@@ -13,6 +13,15 @@ const devConfig = {
     filename: '[name].[hash].js',
     path: path.resolve(__dirname, '../../dist'),
   },
+  target: 'electron-renderer',
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: path.join(__dirname, '../../dist'),
+    compress: true,
+    host: '127.0.0.1',
+    port: 7001,
+    hot: true,
+  },
   module: {
     rules: [
       {
@@ -28,7 +37,7 @@ const devConfig = {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: '[name]__[local]__[hash:base64:5]',
+                localIdentName: '[name]_[hash:base64:5]',
               },
             },
           },
@@ -37,14 +46,6 @@ const devConfig = {
         ],
       },
     ],
-  },
-  target: 'electron-renderer',
-  devtool: 'inline-source-map',
-  devServer: {
-    compress: true,
-    host: '127.0.0.1',
-    port: 3000,
-    hot: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
