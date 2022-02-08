@@ -32,7 +32,7 @@ app.whenReady().then(() => {
   });
 });
 
-const ROOT_PATH = path.join(app.getAppPath(), '../');
+const ROOT_PATH = path.join(app.getAppPath(), '../../');
 ipcMain.on('get-root-path', (event, arg) => {
   event.reply('reply-root-path', ROOT_PATH);
 });

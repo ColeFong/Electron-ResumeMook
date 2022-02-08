@@ -12,6 +12,10 @@ function Resume() {
     });
   });
 
-  return <div>简历模块</div>;
+  return (
+    <>
+      <div>简历模块</div>
+    </>
+  );
 }
 export default Resume;
