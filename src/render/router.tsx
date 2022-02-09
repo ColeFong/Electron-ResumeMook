@@ -1,10 +1,3 @@
-/*
- * @Description:
- * @Author: Miu
- * @LastEditors: Miu
- * @Date: 2022-02-09 17:08:00
- * @LastEditTime: 2022-02-09 18:00:25
- */
 import React, { useEffect } from 'react';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Root from '@src/container/root';
@@ -12,12 +5,15 @@ import Resume from '@src/container/resume';
 import TemplateList from '@src/container/templateList';
 import ROUTER from '@common/constants/router';
 import useReadDirAssetsTemplateHooks from './hooks/useReadDirAssetsTemplateHooks';
+import useThemeActionHooks from './hooks/useThemeActionHooks';
 function Router() {
   const readDirAssetsTemplateHooks = useReadDirAssetsTemplateHooks();
-
+  const initThemeConfig = useThemeActionHooks.useInitThemeConfig();
   useEffect(() => {
+    initThemeConfig();
     readDirAssetsTemplateHooks();
   }, []);
+
   return (
     <HashRouter>
       <Switch>
