@@ -67,7 +67,7 @@ const resumeModel: TSRcReduxModel.Props<TSResume.IntactResume> = {
         post: '前端开发实习生',
         department: 'Joyy',
         content:
-          '担任支付中台前端开发实习生，与Shopline合作，围绕电商研发中心开发多个应用｜任职期间于电商研发中心开发校内闲余市场，采用React开发，主导开发各测试平台及内部工具',
+          '担任支付中台前端开发实习生，与Shopline合作，围绕电商研发中心开发多个应用｜任职期间于电商研发中心采用React开发，主导开发各测试平台及内部工具',
         parseContent: [
           '担任支付中台前端开发实习生，与Shopline合作，围绕电商研发中心开发多个应用',
           '任职期间采用React主导开发，主导开发测试平台及内部工具',
@@ -81,10 +81,10 @@ const resumeModel: TSRcReduxModel.Props<TSResume.IntactResume> = {
         projectName: 'ResumeMook 可视化简历平台',
         post: 'FE',
         content:
-          'Electron + React Hooks 打造简历平台，只需输入一次信息，套用多份模版｜通过 jsonfile 方式实现主题换肤，支持导出 PDF 简历文档｜通过 indexDB 方式实现历史简历缓存，通过可视化拖拽形式，自定义组件模版',
+          'Electron + React Hooks 打造简历平台，只需输入一次信息，套用多份模版｜通过 JSONFile 方式实现主题换肤，支持导出 PDF 简历文档｜通过 indexDB 方式实现历史简历缓存，通过可视化拖拽形式，自定义组件模版',
         parseContent: [
           'Electron + React Hooks 打造简历平台，只需输入一次信息，套用多份模版',
-          '通过 jsonfile 方式实现主题换肤，支持导出 PDF 简历文档',
+          '通过 JSONFile 方式实现主题换肤，支持导出 PDF 简历文档',
           '通过 indexDB 方式实现历史简历缓存，通过可视化拖拽形式，自定义组件模版',
         ],
         date: 1621145137865,

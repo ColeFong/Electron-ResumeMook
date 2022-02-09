@@ -2,7 +2,7 @@
  * @description 弹窗组件
  */
 import React from 'react';
-import './index.css';
+import './index.less';
 import MyButton from '@common/components/MyButton';
 import { IConfirmModal } from '../types';
 
