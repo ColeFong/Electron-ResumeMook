@@ -15,12 +15,12 @@ function Project() {
         <li styleName="flex">
           <div styleName="left">
             <p>
-              <span>2021.03 - 2021.05</span>
+              <span>2022.02 - 2022.02</span>
             </p>
           </div>
           <div styleName="right">
             <p>
-              <span>visResumeMook 可视化简历平台 -前端工程师</span>
+              <span>ResumeMook 可视化简历平台 -前端工程师</span>
             </p>
           </div>
           <div styleName="text">
@@ -29,7 +29,7 @@ function Project() {
                 <span>Electron + React Hooks 打造简历平台，只需输入一次信息，套用多份模版</span>
               </li>
               <li styleName="item-content">
-                <span>通过 jsonfile 方式实现主题换肤，支持导出 PDF 简历文档</span>
+                <span>通过 JSONFile 方式实现主题换肤，支持导出 PDF 简历文档</span>
               </li>
               <li styleName="item-content">
                 <span>通过可视化拖拽形式，自定义组件模版</span>
