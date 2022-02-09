@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import classnames from 'classnames';
-import './index.css';
+import './index.less';
 
 export interface Button {
   /**
