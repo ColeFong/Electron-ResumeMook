@@ -3,19 +3,20 @@
  * @author pengdaokuan
  */
 import React from 'react';
+import { useSelector } from 'react-redux';
 import './index.less';
 
 function Synopsis() {
+  const base: TSResume.Base = useSelector((state: any) => state.resumeModel.base);
+  const work: TSResume.Work = useSelector((state: any) => state.resumeModel.work);
+  const evaluation: string = useSelector((state: any) => state.resumeModel.evaluation);
+  const evaluationList: string[] = useSelector((state: any) => state.resumeModel.evaluationList);
+
   return (
     <div styleName="content">
-      <p styleName="name">方良仕</p>
-      <p styleName="job">前端开发实习生</p>
-      <p styleName="summary">
-        {[
-          '具备良好语言表达能力和沟通能力，能快速融入团队，适应新环境。',
-          '具有代码洁癖，前后端分离，自我学习能力强，对新技术具有钻研精神',
-        ].join('，')}
-      </p>
+      {base?.username && <p styleName="name">{base?.username}</p>}
+      {work?.job && <p styleName="job">{work?.job}</p>}
+      {evaluation && <p styleName="summary">{evaluationList?.join('，')}</p>}
     </div>
   );
 }
