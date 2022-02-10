@@ -10,6 +10,14 @@ const fileAction = {
     return fsPromiseAPIs.readFile(path, { encoding: encoding || 'utf8' });
   },
   /**
+   * @description 是否可读此文件
+   * @param path 路径
+   * @returns {Promise}
+   */
+  canRead: (path: string): Promise<void> => {
+    return fsPromiseAPIs.access(path, fs.constants.R_OK);
+  },
+  /**
    * @description 读取目录内容
    * @param path 路径
    * @returns  {Promise}
@@ -25,6 +33,14 @@ const fileAction = {
   write: (path: string, content: any, encoding: BufferEncoding): Promise<void> => {
     let updateContent = typeof content === 'string' ? content : JSON.stringify(content);
     return fsPromiseAPIs.writeFile(path, updateContent, { encoding: encoding || 'utf8' });
+  },
+  /**
+   * @description 是否可写入此文件
+   * @param path 路径
+   * @returns {Promise}
+   */
+  canWrite: (path: string): Promise<void> => {
+    return fsPromiseAPIs.access(path, fs.constants.W_OK);
   },
   /**
    * @description 重命名文件
@@ -52,20 +68,12 @@ const fileAction = {
     return fsPromiseAPIs.access(path, fs.constants.F_OK);
   },
   /**
-   * @description 是否可写入此文件
-   * @param path 路径
+   * @description 创建文件夹
+   * @param path 创建 /a/b/c，不管`/a` 和 /a/b 是否存在。
    * @returns {Promise}
    */
-  canWrite: (path: string): Promise<void> => {
-    return fsPromiseAPIs.access(path, fs.constants.W_OK);
-  },
-  /**
-   * @description 是否可读此文件
-   * @param path 路径
-   * @returns {Promise}
-   */
-  canRead: (path: string): Promise<void> => {
-    return fsPromiseAPIs.access(path, fs.constants.R_OK);
+  mkdirDir: (path: string): Promise<string | undefined> => {
+    return fsPromiseAPIs.mkdir(path, { recursive: true });
   },
 };
 

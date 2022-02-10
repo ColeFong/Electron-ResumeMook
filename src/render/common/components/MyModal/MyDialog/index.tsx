@@ -22,7 +22,7 @@ function MyDialog({
     <div styleName="vis-mask">
       <div styleName="center">
         <div styleName="vis-dialog-box" className={className} style={{ width: width || 760 }} ref={eleRef}>
-          <div styleName="vis-dialog-header">{title || 'VisResumeMook 提示您'}</div>
+          <div styleName="vis-dialog-header">{title || 'ResumeMook 提示您'}</div>
           <div
             styleName="vis-dialog-close"
             onClick={() => {
