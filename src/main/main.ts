@@ -2,17 +2,19 @@
  * @desc electron 主线程
  */
 import path from 'path';
-import { app, BrowserWindow, ipcMain, dialog } from 'electron';
+import customMenu from './customMenu';
+import { app, BrowserWindow, ipcMain, dialog, Menu } from 'electron';
 
+export interface MyBrowserWindow extends BrowserWindow {
+  uid?: string;
+}
 function isDev() {
   return process.env.NODE_ENV === 'development';
 }
 
-let currentSettingWindow: BrowserWindow;
-
 function createWindow() {
   // 创建主应用窗口
-  const mainWindow = new BrowserWindow({
+  const mainWindow: MyBrowserWindow = new BrowserWindow({
     width: 1280,
     height: 720,
     webPreferences: {
@@ -20,19 +22,22 @@ function createWindow() {
       nodeIntegration: true,
     },
   });
+  mainWindow.uid = 'mainWindow';
 
   // 创建应用设置窗口
-  const settingWindow = new BrowserWindow({
+  const settingWindow: MyBrowserWindow = new BrowserWindow({
     width: 720,
     height: 240,
-    resizable: false, // 该窗口不可拉伸宽高
+    resizable: false,
+    show: false,
+    frame: false,
     webPreferences: {
       devTools: true,
       nodeIntegration: true,
     },
   });
 
-  currentSettingWindow = settingWindow;
+  settingWindow.uid = 'settingWindow';
 
   if (isDev()) {
     mainWindow.loadURL(`http://127.0.0.1:7001/index.html`);
@@ -41,6 +46,17 @@ function createWindow() {
     mainWindow.loadURL(`file://${path.join(__dirname, '../../dist/index.html')}`);
     settingWindow.loadURL(`file://${path.join(__dirname, '../../dist/setting.html')}`);
   }
+
+  ipcMain.on('Electron:SettingWindow-hide-event', () => {
+    if (settingWindow.isVisible()) {
+      settingWindow.hide();
+    }
+  });
+  ipcMain.on('Electron:SettingWindow-min-event', () => {
+    if (settingWindow.isVisible()) {
+      settingWindow.minimize();
+    }
+  });
 }
 
 app.whenReady().then(() => {
@@ -48,6 +64,11 @@ app.whenReady().then(() => {
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
+});
+
+app.on('ready', () => {
+  const menu = Menu.buildFromTemplate(customMenu);
+  Menu.setApplicationMenu(menu);
 });
 
 const ROOT_PATH = path.join(app.getAppPath(), '../../');

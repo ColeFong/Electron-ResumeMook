@@ -1,7 +1,7 @@
 /**
  * @description 制作简历-操作区
  */
-import React, { useState } from 'react';
+import React from 'react';
 import './index.less';
 import { useHistory, useParams } from 'react-router';
 import MyButton from '@common/components/MyButton';
@@ -15,16 +15,17 @@ import ROUTER, { ROUTER_KEY } from '@common/constants/router';
 import { intToDateString } from '@common/utils/time';
 import { getAppPath } from '@common/utils/appPath';
 import { useReadGlobalConfigFile, useUpdateGlobalConfigFile } from '@src/hooks/useGlobalConfigActionHooks';
+import useClickAway from '@common/hooks/useClickAway';
 
 function ResumeAction() {
   const history = useHistory();
   const routerParams = useParams<{ fromPath: string; templateId: string; templateIndex: string }>();
-  const [showModal, setShowModal] = useState(false);
   const base: TSResume.Base = useSelector((state: any) => state.resumeModel.base);
   const work: TSResume.Work = useSelector((state: any) => state.resumeModel.work);
   const resume = useSelector((state: any) => state.resumeModel);
   const readAppConfigThemeFile = useReadGlobalConfigFile();
   const updateGlobalConfigFile = useUpdateGlobalConfigFile();
+  const { ref, componentVisible, setComponentVisible } = useClickAway(false);
 
   // 返回首页
   const onBack = () => {
@@ -39,8 +40,8 @@ function ResumeAction() {
 
   // 导出PDF
   const exportPdf = () => {
-    toPrintPdf(`${base?.username}+${base?.school}+${work?.job}`);
-    setShowModal(false);
+    toPrintPdf(`${base?.username}-${base?.school}-${work?.job}`);
+    setComponentVisible(false);
     readAppConfigThemeFile().then((value: { [key: string]: any }) => {
       if (value?.resumeSavePath) {
         saveResumeJson(value?.resumeSavePath);
@@ -54,7 +55,7 @@ function ResumeAction() {
     });
   };
 
-  // 存储数据 JSON
+  // 存储数据json
   const saveResumeJson = (resumeSavePath: string) => {
     const date = intToDateString(new Date().valueOf(), '-');
     const prefix = `${date}-${base?.username}-${base?.school}-${work?.job}-${createUID()}.json`;
@@ -80,17 +81,18 @@ function ResumeAction() {
       <div styleName="back" onClick={onBack}>
         返回
       </div>
-      <MyButton size="middle" className="export-btn" onClick={() => setShowModal(true)}>
+      <MyButton size="middle" className="export-btn" onClick={() => setComponentVisible(true)}>
         导出PDF
       </MyButton>
-      {showModal && (
+      {componentVisible && (
         <MyModal.Confirm
+          eleRef={ref}
           title="确定要打印简历吗？"
           description="请确保信息的正确，目前仅支持单页打印哦～"
           config={{
             cancelBtn: {
               isShow: true,
-              callback: () => setShowModal(false),
+              callback: () => setComponentVisible(false),
             },
             submitBtn: {
               isShow: true,
