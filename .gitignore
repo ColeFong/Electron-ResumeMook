@@ -1,5 +1,8 @@
 node_modules
-.DS_Store
+.idea/*
+.templaterc.js
 dist
-distAssets
+# mac自动生成的文件
+.DS_Store
+assets/*/.DS_Store
 package

@@ -7,17 +7,17 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'], // 定义 eslint 所依赖的插件
+  plugins: ['@typescript-eslint'], // 定义了 eslint 文件所依赖的插件
   globals: {
-    // 这里填入项目需要的全局变量
-    // 这里值为 false 表示这个全局变量不允许被重新赋值
+    // 这里填入你的项目需要的全局变量
+    // 这里值为 false 表示这个全局变量不允许被重新赋值，比如：
     __dirname: false,
   },
   rules: {
     'no-undefined': 'warn',
     'no-debugger': 'off',
     complexity: ['error', { max: 99 }],
-    // 这里填入项目需要的个性化配置
+    // 这里填入你的项目需要的个性化配置，比如：
     // @fixable 一个缩进必须用两个空格替代
     indent: [
       1,
