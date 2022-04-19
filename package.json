@@ -1,5 +1,5 @@
 {
-  "name": "ResumeMook",
+  "name": "resume-mook",
   "version": "0.0.1",
   "author": "Miu",
   "description": "一款轻巧适用的简历平台桌面应用。",
@@ -90,7 +90,7 @@
     "copy-webpack-plugin": "^6.4.1",
     "css-loader": "^3.0.0",
     "electron": "^11.5.0",
-    "electron-builder": "^22.14.13",
+    "electron-builder": "23.0.2",
     "eslint": "^7.26.0",
     "eslint-config-alloy": "^4.1.0",
     "eslint-config-prettier": "^8.3.0",
